@@ -1,0 +1,26 @@
+{
+  "name": "url",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --env-file=.env --watch  app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.11.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "mysql2": "^3.14.1",
+    "nodemon": "^3.1.10",
+    "zod": "^3.25.72"
+  },
+  "devDependencies": {
+    "prisma": "^6.11.1"
+  }
+}

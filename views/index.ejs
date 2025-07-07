@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>URL Shortener</h1>
+      <form action="/" method="post">
+        <div>
+          <label for="url">Enter URL:</label>
+          <input type="url" name="url" id="url" required />
+        </div>
+        <div>
+          <label for="shortCode">Enter shortCode:</label>
+          <input type="text" name="shortCode" id="shortCode" required />
+        </div>
+        <button type="submit">Shorten</button>
+      </form>
+
+      <h2>Shortened URLs</h2>
+      <div class="url-list">
+        <% links.forEach(({id, shortCode, url}) => { %>
+        <div class="url-item">
+          <div class="url-info">
+            <a href="/<%= shortCode %>" target="_blank" class="short-url">
+              <%= host %>/<%= shortCode %>
+            </a>
+            <span class="original-url"><%= url %></span>
+          </div>
+          <form action="/delete/<%= id %>" method="post" class="delete-form">
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
