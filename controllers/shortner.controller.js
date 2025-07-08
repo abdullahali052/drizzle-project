@@ -8,9 +8,15 @@ import {
 export const GetShortnerPage = async (req, res) => {
   try {
     const links = await getAllShortLinks();
+    var isLoggedIn = req.headers.cookie;
+    isLoggedIn = Boolean(
+      isLoggedIn
+        ?.split(";")
+        ?.find((cookie) => cookie.trim().startsWith("isLoggedIn"))
+        ?.split("=")[1]
+    );
 
-    // Let EJS render the template properly
-    return res.render("index", { links, host: req.host });
+    return res.render("index", { isLoggedIn, links, host: req.host });
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
@@ -20,7 +26,6 @@ export const GetShortnerPage = async (req, res) => {
 export const PostShortnerPage = async (req, res) => {
   try {
     const { url, shortCode } = req.body;
-    // console.log("shortCode : ", shortCode, "url : ", url);
 
     const finalShortCode = shortCode || crypto.randomBytes(4).toString("hex");
     const link = await getLinkByShortCode(shortCode);

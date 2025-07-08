@@ -7,16 +7,27 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
+    <%- include('./partials/header') %> <%if(isLoggedIn){%>
+    <h1>You Are Logged In</h1>
+    <%}else {%>
+    <h1>You Are Not Logged In</h1>
+    <%}%>
+    <div class="container-main">
       <h1>URL Shortener</h1>
       <form action="/" method="post">
         <div>
           <label for="url">Enter URL:</label>
-          <input type="url" name="url" id="url" required />
+          <input type="url" name="url" id="url" required autocomplete="off" />
         </div>
         <div>
           <label for="shortCode">Enter shortCode:</label>
-          <input type="text" name="shortCode" id="shortCode" required />
+          <input
+            type="text"
+            name="shortCode"
+            id="shortCode"
+            required
+            autocomplete="off"
+          />
         </div>
         <button type="submit">Shorten</button>
       </form>
@@ -38,5 +49,6 @@
         <% }) %>
       </div>
     </div>
+    <%- include('./partials/footer') %>
   </body>
 </html>
