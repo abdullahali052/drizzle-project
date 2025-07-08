@@ -1,20 +1,13 @@
-// import {
-//   loadLinks,
-//   saveLinks,
-//   getLinkByShortCode,
-//   deleteData,
-// } from "../models/shortner.model.js";
-
 import {
   deleteData,
   getLinkByShortCode,
-  loadLinks,
+  getAllShortLinks,
   saveLinks,
 } from "../services/shortener.service.js";
 
 export const GetShortnerPage = async (req, res) => {
   try {
-    const links = await loadLinks();
+    const links = await getAllShortLinks();
 
     // Let EJS render the template properly
     return res.render("index", { links, host: req.host });
