@@ -7,15 +7,9 @@ import {
 
 export const GetShortnerPage = async (req, res) => {
   try {
+    var isLoggedIn = req.cookies.isLoggedIn;
+    console.log(isLoggedIn);
     const links = await getAllShortLinks();
-    var isLoggedIn = req.headers.cookie;
-    isLoggedIn = Boolean(
-      isLoggedIn
-        ?.split(";")
-        ?.find((cookie) => cookie.trim().startsWith("isLoggedIn"))
-        ?.split("=")[1]
-    );
-
     return res.render("index", { isLoggedIn, links, host: req.host });
   } catch (error) {
     console.error(error);

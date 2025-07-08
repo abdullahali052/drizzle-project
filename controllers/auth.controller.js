@@ -3,10 +3,12 @@ export const getRegisterPage = (req, res) => {
 };
 
 export const getLoginPage = (req, res) => {
-  res.setHeader("Set-Cookie", "isLoggedIn=true; path=/;");
+  // res.setHeader("Set-Cookie", "isLoggedIn=true; path=/;");
+
   return res.render("auth/login");
 };
 
 export const postLogin = (req, res) => {
+  res.cookie("isLoggedIn", true);
   res.redirect("/");
 };
