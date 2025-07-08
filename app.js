@@ -1,5 +1,6 @@
 import { shortnerRoutes } from "./routes/shortner.routes.js";
 import express from "express";
+import { authRoutes } from "./routes/auth.routes.js";
 const app = express();
 
 app.use(express.static("public"));
