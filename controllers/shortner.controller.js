@@ -7,10 +7,8 @@ import {
 
 export const GetShortnerPage = async (req, res) => {
   try {
-    var isLoggedIn = req.cookies.isLoggedIn;
-    console.log(isLoggedIn);
     const links = await getAllShortLinks();
-    return res.render("index", { isLoggedIn, links, host: req.host });
+    return res.render("index", { links, host: req.host });
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
@@ -55,8 +53,6 @@ export const deleteLink = async (req, res) => {
 
     const parsedId = parseInt(id);
     const isDeleted = await deleteData(parsedId);
-
-    console.log(parsedId, id);
 
     if (isDeleted) {
       return res.redirect("/"); // Success hone par homepage par redirect
